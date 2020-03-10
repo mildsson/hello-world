@@ -1,0 +1,30 @@
+
+kubeadm init --pod-network-cidr=192.168.0.0/16 --apiserver-advertise-address=10.0.3.17
+
+
+kubeadm join 10.0.3.17:6443 --token dgdig7.jhtangee3ulv3eih --discovery-token-ca-cert-hash sha256:eeb9253e956a591082d7a2b656763d2f39ff054a769aafa74d5788c02f9a4249 
+
+cat <<EOF >  /etc/sysctl.d/k8s.conf
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+EOF
+sysctl --system
+
+
+Your Kubernetes control-plane has initialized successfully!
+
+To start using your cluster, you need to run the following as a regular user:
+
+  mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+You should now deploy a pod network to the cluster.
+Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
+  https://kubernetes.io/docs/concepts/cluster-administration/addons/
+
+Then you can join any number of worker nodes by running the following on each as root:
+
+kubeadm join 10.0.3.17:6443 --token 606e9o.0dg9dlohqjou1ris --discovery-token-ca-cert-hash sha256:489283156a54c44619012d280218d60d1fd75a8f94c9607917b790fd5fe72aa2 
+[root@centos1 ~]# 
+
