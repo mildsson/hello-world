@@ -1,2 +1,2 @@
 # Kubernetes
-woting app example
+voting app example
