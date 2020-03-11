@@ -1,2 +1,2 @@
-# Kubernetes
-voting app example
+# hello-world
+Just first test repository
